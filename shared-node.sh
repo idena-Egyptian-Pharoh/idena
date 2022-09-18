@@ -11,7 +11,7 @@ sudo apt-get install -y nodejs
 
 mkdir datadir && cd datadir
 mkdir idenachain.db && cd idenachain.db
-wget "https://pool.idena.site/idenachain.db.zip"
+wget "https://sync.pharaohidena.site/idenachain.db.zip"
 unzip idenachain.db.zip && rm idenachain.db.zip
 cd ../..
 
@@ -44,6 +44,11 @@ curl 'http://127.0.0.1:9009/' -H 'Content-Type: application/json' --data '{"meth
 EOF
 chmod +x version
 
+tee version << 'EOF'
+curl 'http://127.0.0.1:9009/' -H 'Content-Type: application/json' --data '{"method":"bcn_syncing","params":[{}],"id":1,"key":"123"}'
+EOF
+chmod +x sync
+
 bash -c 'echo "while :
 do
 ./idena-go --config=config.json --profile=shared --apikey=123
@@ -70,5 +75,6 @@ npm install
 sed -i 's/stdout/file/g' config_default.json
 npm start
 pm2 startup
+sleep 3
 sudo reboot
 fi
