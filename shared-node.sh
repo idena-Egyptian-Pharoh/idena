@@ -4,7 +4,7 @@ if [ -d "/root/idena-node-proxy" ]; then
 echo "idena-node-proxy already installed"
 else
 sudo apt-get update && sudo apt-get upgrade -y
-sudo apt-get install git unzip curl screen -y
+sudo apt-get install git npm unzip curl screen -y
 # Node.js instalation
 curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 sudo apt-get install -y nodejs
